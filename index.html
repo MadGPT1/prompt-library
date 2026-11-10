@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt Library — 100 copy-paste AI prompts that get real answers</title>
+<meta name="description" content="100 free copy-paste prompts for coding, debugging, writing, research, business and learning. Searchable, no sign-up. Works with ChatGPT, Claude, Gemini and any AI assistant.">
+<meta property="og:title" content="Prompt Library — 100 copy-paste AI prompts that get real answers">
+<meta property="og:description" content="100 free prompts for code, writing, research and work. Search, copy, paste. No sign-up.">
+<style>
+:root{
+  --bg:#0e0e11; --panel:#17171c; --line:#2a2a32; --text:#ececf1; --muted:#9a9aa6;
+  --accent:#e5243b; --accent-soft:#3a1219; --good:#3ecf8e;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f7f7f9; --panel:#ffffff; --line:#e3e3e8; --text:#16161b; --muted:#5d5d68;
+    --accent:#d01f35; --accent-soft:#fde8eb; --good:#11865a;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:0 0 8px;letter-spacing:-.02em}
+h1 span{color:var(--accent)}
+.lead{color:var(--muted);margin:0 0 22px;max-width:660px}
+.tools{position:sticky;top:0;background:var(--bg);padding:12px 0;z-index:2;border-bottom:1px solid var(--line);margin-bottom:18px}
+input[type=search]{width:100%;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit}
+input[type=search]:focus{outline:2px solid var(--accent);outline-offset:1px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:20px;padding:5px 12px;cursor:pointer}
+.chip.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+.chip:focus-visible,.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.count{color:var(--muted);font-size:14px;margin:0 0 12px}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h2{font-size:16px;margin:0;line-height:1.35}
+.cat{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+pre{white-space:pre-wrap;word-break:break-word;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;margin:0;font:13.5px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;flex:1}
+.copy{align-self:flex-start;font:inherit;font-size:14px;font-weight:600;border-radius:8px;padding:7px 12px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--text)}
+.copy.done{color:var(--good);border-color:var(--good)}
+.empty{color:var(--muted);padding:30px 0}
+.cta{margin-top:28px;padding:18px;border-radius:14px;background:var(--accent-soft);border:1px solid var(--line)}
+.cta a{color:var(--accent);font-weight:600}
+footer{margin-top:36px;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+@media (max-width:720px){.list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Prompt <span>Library</span></h1>
+  <p class="lead">100 prompts that get a real answer instead of a polite one. Replace the parts in [brackets], paste, done. Free, no sign-up, works with any AI assistant.</p>
+
+  <div class="tools">
+    <input type="search" id="q" placeholder="Search prompts: debug, email, summary…" aria-label="Search prompts">
+    <div class="chips" id="chips"></div>
+  </div>
+  <p class="count" id="count"></p>
+  <div class="list" id="list"></div>
+
+  <div class="cta">
+    <strong>A good prompt still needs a model that answers.</strong><br>
+    <a href="https://madgpt.io/?ref=prompt-library" target="_blank" rel="noopener">MadGPT</a> puts 7 models in one chat, including an opt-in Uncensored model and a VS Code agent. Free trial in the Telegram bot.
+  </div>
+
+  <footer>
+    More free tools: <a href="https://madgpt1.github.io/prompt-upgrader/">Prompt Upgrader</a> · <a href="https://madgpt1.github.io/token-counter/">Token Counter</a> · <a href="https://github.com/MadGPT1/ai-code-review-prompts">the prompts on GitHub</a>.
+    Made by the <a href="https://madgpt.io/?ref=prompt-library">MadGPT</a> team. Prompts are CC0: use them however you like.
+  </footer>
+</main>
+<script>
+const RAW = `Code review|Failure modes, not approval|What are the 3 most likely ways this code breaks in production? Rank them by impact and give a concrete fix for each.
+Code review|The 3 a.m. reviewer|Review this as a senior engineer who has been paged at 3 a.m. by this service twice this month. Focus on timeouts, retries, error handling, logging and resource leaks. Ignore style.
+Code review|Diff review|Here is a diff. For each change tell me: what behaviour changes, what could break that the diff does not cover, and whether you would approve it and why.
+Code review|Edge cases only|List every input or state this function does not handle correctly. For each, give a minimal example that reproduces the problem.
+Code review|Readability pass|The logic is correct. Suggest at most 5 changes that make this easier to read for a new team member. Do not change behaviour.
+Code review|Security review of my own code|This is code from my own project. Review it for injection, auth flaws, exposed secrets, unsafe deserialization, SSRF and path traversal. Rank findings by impact and give a patch for each.
+Code review|Input trust audit|List every place where this code trusts input from outside the process: user input, files, environment variables, network. For each, say how it is validated, or that it is not.
+Code review|Performance review|Find the 3 slowest parts of this code for an input of [size]. For each: why it is slow, the complexity, and a faster version.
+Code review|Concurrency review|Assume this runs in [N] parallel workers. List every race condition, deadlock risk and shared-state problem, with the line that causes it.
+Code review|API design review|Review this API from the point of view of someone calling it for the first time. What is confusing, inconsistent or easy to misuse? Suggest the smallest changes that fix it.
+Debugging|The three things to paste|Error (exact): [paste]\\nCode: [paste the function]\\nExpected: [what should happen]\\nActual: [what happens]\\n\\nFind the root cause first. Then give the smallest fix.
+Debugging|Hypotheses before fixes|Give me 3 hypotheses for why this fails, ordered by likelihood. For each, name one check that would confirm or rule it out. Do not write a fix yet.
+Debugging|Read the stack trace|Here is a stack trace. Tell me which frame is the real origin of the bug and why, and which frames are just noise.
+Debugging|Works locally, fails in CI|This passes locally and fails in [CI / production]. List the environment differences that could cause this, most likely first, with a way to test each.
+Debugging|Intermittent failure|This fails about 1 time in [N]. List the causes of non-deterministic behaviour in this code: timing, ordering, shared state, external calls. Say how to make each one reproducible.
+Debugging|Add the right logs|I cannot reproduce this bug. Tell me exactly which values to log and where, so the next occurrence shows the cause. Keep it under 10 log lines.
+Debugging|Bisect the change|This worked in version [A] and fails in [B]. Here is the diff between them. Rank the changes by how likely each one is to cause [symptom].
+Debugging|Explain the error|Explain this error message in plain words: what the runtime was trying to do, what it found instead, and the two most common causes.
+Debugging|Memory leak hunt|Memory grows by [amount] per [time] in this service. List what in this code could hold references forever, and how to confirm each suspect.
+Debugging|SQL query is slow|This query takes [time] on a table with [rows] rows. Here are the query and the schema. Explain why it is slow and give the index or rewrite that fixes it.
+Refactor & tests|Behaviour-preserving refactor|Refactor this to [goal]. Constraints: identical external behaviour, same public API, no new dependencies. List every behaviour you preserved and how you checked it.
+Refactor & tests|Legacy code in small steps|Propose a refactor of this legacy module as a sequence of small steps. Each step must leave the code working and be reviewable on its own.
+Refactor & tests|Explain before you change|Before changing anything, explain what this code does, line by line, and point out anything that looks intentional but strange.
+Refactor & tests|Split a large function|This function does too much. Propose how to split it: name each new function, say what it takes and returns, and show the new top-level function.
+Refactor & tests|Remove duplication safely|These [N] blocks look duplicated. Tell me which differences between them are accidental and which are intentional, then propose one shared version.
+Refactor & tests|The test that would have caught it|Here is a bug and its fix. Write the test that fails before the fix and passes after it. Then suggest 2 related tests that are missing.
+Refactor & tests|Test plan|Write a test plan for this function: happy path, edge cases, error cases. Mark which ones need mocks and why.
+Refactor & tests|Find untested behaviour|Here are the code and its tests. List the behaviours that no test covers, ordered by how bad a regression there would be.
+Refactor & tests|Property-based tests|Suggest 5 properties that must always hold for this function, regardless of input, and write property-based tests for them in [framework].
+Refactor & tests|Migration plan|I need to migrate from [old] to [new] without downtime. Give a step-by-step plan where every step can be rolled back, and say how to verify each step.
+Agents & planning|Plan first|Before writing any code, list the files you would change and why. Wait for my OK.
+Agents & planning|One step at a time|Do only item 1 from the plan. Stop after that and show me the diff.
+Agents & planning|Explain your own diff|Explain your diff file by file. Mark anything you are unsure about and anything you assumed without checking.
+Agents & planning|Scope guard|Only touch files related to [task]. If you think another file needs a change, stop and ask instead of editing it.
+Agents & planning|Fresh-eyes review|You did not write this code. Find the three most likely ways it fails in production.
+Agents & planning|Definition of done|Before you start, write the definition of done for this task as a checklist I can verify myself. Include the commands I would run.
+Agents & planning|Design options|Give me 3 ways to implement [feature]. For each: effort, risk, what it makes harder later. Then pick one and defend the choice.
+Agents & planning|The 5-line handoff|Summarize this conversation in 5 lines: goal, constraints, decisions made, current state, next step.
+Writing|Rewrite without the fluff|Rewrite this in half the length. Keep every fact and every number. Remove filler, hedging and repeated points.\\n\\n[text]
+Writing|Match my voice|Here are 3 samples of my writing. Describe my style in 5 bullet points, then write [piece] in that style.\\n\\n[samples]
+Writing|Cold email|Write a 90-word cold email to [role] at [type of company] about [offer]. One specific reason they should care, one clear ask. No greeting fluff, no subject line ideas. Output only the email.
+Writing|Subject lines|Write 10 subject lines for this email, each under 45 characters. No clickbait, no all caps. Then pick the best 2 and say why.\\n\\n[email]
+Writing|Edit like an editor|Edit this as a strict editor. Return the edited text, then a list of the 5 most important changes and the reason for each.\\n\\n[text]
+Writing|Find the weak argument|Here is my draft. Which argument is the weakest and why? What would a sceptical reader say to it? Suggest how to fix or cut it.
+Writing|Headline options|Give me 10 headlines for this article: 5 plain and specific, 5 with a stronger angle. No questions, no colons.\\n\\n[article or summary]
+Writing|Explain to a specific reader|Explain [topic] to [reader, e.g. a CFO with no technical background] in under 200 words. Use one concrete example from their world.
+Writing|Difficult message|Write a message to [person] saying [hard thing]. Tone: direct and respectful, no apologies for the decision, no blame. Under 120 words.
+Writing|Meeting notes to summary|Turn these raw notes into: decisions made, open questions, and action items with an owner and a date. Do not add anything that is not in the notes.\\n\\n[notes]
+Writing|Product description|Write a product description for [product] aimed at [buyer]. Lead with the problem it removes. 80 words, no adjectives like amazing or powerful.
+Writing|Cut the first paragraph|Read this draft and tell me the sentence where it actually starts being interesting. Then rewrite the opening to begin there.\\n\\n[draft]
+Writing|Story feedback|Read this scene as an editor of [genre]. Where does the tension drop? Which line of dialogue sounds false? Give 3 specific fixes, not general advice.
+Writing|Translate with intent|Translate this into [language] for [audience]. Keep the meaning and the tone, not the word order. Flag any phrase that does not translate cleanly.\\n\\n[text]
+Research & analysis|Give me a position|Give your conclusion on [question] in one paragraph. Then the 3 strongest arguments for it and the strongest argument against it.
+Research & analysis|Steelman the other side|I believe [position]. Write the strongest possible case against it, as someone who honestly disagrees would make it.
+Research & analysis|Summarize a long document|Summarize this document in 7 bullet points. Each bullet is one claim plus the evidence given for it. Then list what the document does not address.\\n\\n[document]
+Research & analysis|Compare options|Compare [A], [B] and [C] for [use case]. Give a table with the 5 criteria that matter most for this use case, then a recommendation in two sentences.
+Research & analysis|What would change your mind|You concluded [conclusion]. What evidence would make you change that conclusion? How could I check for it?
+Research & analysis|Find the assumptions|List the assumptions this plan depends on. Mark each as verified, plausible or unverified, and say which unverified one is most dangerous.\\n\\n[plan]
+Research & analysis|Read a study critically|Here is a study abstract. What did they measure, in whom, and compared to what? What does it not show? What would a sceptical statistician ask?
+Research & analysis|Explain the disagreement|Experts disagree about [topic]. Explain the main camps, what each believes, and the factual question they actually disagree on.
+Research & analysis|Data sanity check|Here is a table of data. Before any analysis, list anything that looks wrong: impossible values, duplicates, gaps, suspicious round numbers.\\n\\n[data]
+Research & analysis|Interview question set|I am interviewing [type of person] to learn about [topic]. Write 10 questions that get stories and specifics, not opinions. No leading questions.
+Research & analysis|Decision memo|Write a one-page decision memo on [decision]: context in 3 sentences, options, recommendation, risks, and what we would do if it goes wrong.
+Research & analysis|Second-order effects|If we do [action], what happens next? List first-order effects, then the second-order effects each one causes. Mark the ones that are hard to reverse.
+Business & marketing|Why this plan fails|Name the three most likely reasons this plan fails. Sort them by damage and say what early sign would warn us for each.\\n\\n[plan]
+Business & marketing|Landing page critique|Name the three weakest parts of this landing page. For each: what is wrong in one sentence, and a rewrite.\\n\\n[page text]
+Business & marketing|Positioning statement|Write a positioning statement for [product]: who it is for, what problem it removes, what they use today instead, and why this is better. Four sentences.
+Business & marketing|Customer objections|List the 7 objections a [buyer] would raise before paying for [product], in the words they would actually use. Write a two-sentence honest answer to each.
+Business & marketing|Pricing page review|Review this pricing page as a buyer who is comparing 3 tools. What is unclear? What would make you hesitate? What is missing?\\n\\n[pricing text]
+Business & marketing|Content plan from one idea|Turn this one idea into 10 pieces of content: 3 short posts, 3 short video scripts under 20 seconds, 2 article outlines and 2 polls.\\n\\n[idea]
+Business & marketing|Short video script|Write a 15-second video script about [topic]. First line is a hook under 8 words. On-screen text only, no narration. End with one action.
+Business & marketing|Competitor comparison|Compare [my product] with [competitor] for [buyer]. Be fair: list where the competitor is better. End with who should choose which.
+Business & marketing|Survey that gets answers|Write a 5-question survey to learn why users [action, e.g. cancel]. No question may be answerable with yes or no. Order them from easy to personal.
+Business & marketing|Reply to a bad review|Write a reply to this negative review. Acknowledge the specific problem, say what was done about it, offer one next step. No excuses. Under 80 words.\\n\\n[review]
+Business & marketing|Partnership pitch|Write a first message to [channel or creator] proposing [partnership]. Say what they get in the first sentence. No links, under 60 words.
+Business & marketing|Metrics that matter|For a [type of business] at [stage], name the 5 metrics worth tracking weekly and the 5 that look useful but are not. One line of reasoning for each.
+Learning|Teach me in layers|Explain [topic] three times: in one sentence, in one paragraph, and in detail with an example. Stop after each and ask if I want the next level.
+Learning|Test me|Ask me 5 questions about [topic], one at a time, from easy to hard. After each answer, tell me what I got right, what I missed, and move on.
+Learning|Find my gaps|Here is my explanation of [topic]. Point out what is wrong, what is missing, and what I seem to misunderstand.\\n\\n[my explanation]
+Learning|Study plan|Make a 4-week plan to learn [skill] with [hours] hours a week. Each week: one goal, what to practise, and how I will know I got it.
+Learning|Worked example|Solve this problem step by step and explain why each step is taken, not only what it is. Then give me a similar problem to try.\\n\\n[problem]
+Learning|Analogy and its limits|Explain [concept] with an analogy from [field I know]. Then tell me where the analogy breaks down.
+Learning|Read code I do not know|I know [language A] but not [language B]. Explain this code by mapping each construct to what I would write in [language A].\\n\\n[code]
+Learning|Common mistakes|What are the 7 mistakes beginners make most often in [skill]? For each: how to notice I am making it and what to do instead.
+Learning|Flashcards|Turn this text into 15 question-and-answer flashcards. One fact per card. Questions must be answerable without seeing the text.\\n\\n[text]
+Learning|Language practice|Talk with me in [language] at [level] about [topic]. After each of my messages, correct my mistakes briefly in English, then continue the conversation.
+Productivity|Plan my week|Here are my tasks and my fixed commitments. Build a realistic week: no more than 3 important tasks a day, and tell me what will not fit.\\n\\n[list]
+Productivity|Break down a big task|Break [project] into steps that each take under 2 hours. Mark which steps block others and which one I should do first.
+Productivity|Prioritize ruthlessly|Here are [N] things I think I need to do. Tell me which 3 matter most for [goal], which can wait, and which I should drop. Be blunt.\\n\\n[list]
+Productivity|Email triage|Here are [N] emails. For each: reply needed or not, urgency, and a two-line draft reply where one is needed.\\n\\n[emails]
+Productivity|Agenda that ends on time|Write an agenda for a [length] meeting about [topic]. Each item has a time limit and a stated outcome: decide, inform or discuss.
+Productivity|Checklist from a process|Turn this description of how we do [process] into a checklist someone new could follow without asking questions.\\n\\n[description]
+Productivity|Spreadsheet formula|In [Excel / Google Sheets], column A has [what], column B has [what]. Write a formula that [goal]. Explain each part in one line.
+Productivity|Decision between two options|I am choosing between [A] and [B]. Ask me the 5 questions whose answers would settle it, one at a time. Then tell me what you would pick.
+Meta-prompting|Ask for the result, not permission|[Verb] [exact thing]. Output only the result.\\n\\nExample: Write a migration that adds a nullable archived_at timestamp to orders. Output only the SQL.
+Meta-prompting|Set the format|Answer in this format: [e.g. 3 options, one line each, then your pick and one sentence why]. Nothing before or after.
+Meta-prompting|State assumptions and continue|If anything in my request is ambiguous, state your assumption in one line and continue. Do not ask me to clarify.
+Meta-prompting|Improve my prompt|Here is a prompt I wrote. Rewrite it so a model gives a more specific answer: add the missing context fields as [brackets], set the output format, remove hedging.\\n\\n[my prompt]
+Meta-prompting|Ask me first|Before answering, ask me up to 5 questions whose answers would change your response. Then wait.
+Meta-prompting|Confidence check|For each claim in your last answer, say how confident you are: high, medium or low. For anything not high, say how I can verify it.`;
+
+const PROMPTS = RAW.split("\n").map(l => { const [cat, title, ...rest] = l.split("|"); return {cat, title, text: rest.join("|").replace(/\\n/g, "\n")}; });
+const CATS = ["All", ...new Set(PROMPTS.map(p => p.cat))];
+const $ = id => document.getElementById(id);
+let cat = "All";
+
+function el(tag, cls, text){ const e = document.createElement(tag); if(cls) e.className = cls; if(text != null) e.textContent = text; return e; }
+
+function renderChips(){
+  const box = $("chips"); box.textContent = "";
+  CATS.forEach(c => {
+    const n = c === "All" ? PROMPTS.length : PROMPTS.filter(p => p.cat === c).length;
+    const b = el("button", "chip" + (c === cat ? " on" : ""), c + " " + n);
+    b.type = "button"; b.setAttribute("aria-pressed", c === cat);
+    b.onclick = () => { cat = c; renderChips(); render(); };
+    box.appendChild(b);
+  });
+}
+function render(){
+  const q = $("q").value.trim().toLowerCase();
+  const items = PROMPTS.filter(p => (cat === "All" || p.cat === cat) &&
+    (!q || (p.title + " " + p.text + " " + p.cat).toLowerCase().includes(q)));
+  const list = $("list"); list.textContent = "";
+  $("count").textContent = items.length + (items.length === 1 ? " prompt" : " prompts");
+  if(!items.length){ list.appendChild(el("p", "empty", "Nothing found. Try a shorter word.")); return; }
+  items.forEach(p => {
+    const card = el("article", "card");
+    card.appendChild(el("span", "cat", p.cat));
+    card.appendChild(el("h2", "", p.title));
+    card.appendChild(el("pre", "", p.text));
+    const b = el("button", "copy", "Copy"); b.type = "button";
+    b.onclick = async () => {
+      try { await navigator.clipboard.writeText(p.text); b.textContent = "Copied"; b.classList.add("done"); }
+      catch(e){ b.textContent = "Select and copy manually"; }
+      setTimeout(() => { b.textContent = "Copy"; b.classList.remove("done"); }, 1500);
+    };
+    card.appendChild(b);
+    list.appendChild(card);
+  });
+}
+$("q").addEventListener("input", render);
+renderChips(); render();
+</script>
+</body>
+</html>
